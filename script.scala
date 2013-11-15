@@ -1,8 +1,15 @@
 //读入一天的数据并合并
-var rdd=sc.textFile("/Users/paul/datamining/dm2011_hangzhou-access_log.2013.10.10.00.59.log.gz")
+var rdd=sc.textFile("/Users/paul/dw/106/2013/11/dm2011_hangzhou-access_log.2013.11.01.00.59.log.gz")
 for (i <- 1 to 23) {
 	val sn= if (i>=10 ) ""+i else "0"+i
-	val r= sc.textFile("/Users/paul/datamining/dm2011_hangzhou-access_log.2013.10.10."+sn+".59.log.gz")
+	val r= sc.textFile("/Users/paul/dw/106/2013/11/dm2011_hangzhou-access_log.2013.11.01."+sn+".59.log.gz")
+	rdd=rdd.union(r)
+}
+
+
+for (i <- 0 to 23) {
+	val sn= if (i>=10 ) ""+i else "0"+i
+	val r= sc.textFile("/Users/paul/dw/116/2013/11/dm2011_hangzhou-access_log.2013.11.01."+sn+".59.log.gz")
 	rdd=rdd.union(r)
 }
 //来源为百度的访问
